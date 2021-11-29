@@ -1,0 +1,7 @@
+server:
+  port: ${SERVER_PORT:8080}
+  password: "somePassword"
+  key: ${OKTA_API_ACCESS_KEY:SSWS 00cNr0chjfjdfyuioYuwFbwIrdU_ImXZvL57v7EF7-H} 
+  okta: SSWS 00cNr0chjfjdfkuidabcgbwIrdU_ImXZvL57v7EF7-H
+  accessKey: 'AKIAI6B5TG3Q6H32ULTA'
+  accessKeyNew: 'PKIAI6B5TG3Q6u96ULTA'
