@@ -1,2 +1,2 @@
 # secret-detection
-Sample Repo to set up secret detection pipeline for GitHub 
+Sample Repo to set up secret detection pipeline for GitHub (public/private)
