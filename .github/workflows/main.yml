@@ -34,3 +34,12 @@ jobs:
         run: |
           echo Add other actions to build,
           echo test, and deploy your project.
+      
+      - name: Whispers Scan
+        run: |
+          apt-get update,
+          apt-get install python3 python3-pip -y,
+          python3 --version,
+          pip3 install whispers,
+          echo DONE set up.
+          whispers . >> whispers_result.json
