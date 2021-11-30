@@ -40,3 +40,15 @@ jobs:
         with:
           name: Artifact
           path: whispers_result.json
+      
+      - name: Github Action for wget
+        uses: wei/wget@v1.1.1
+        
+      - name: Gitleaks Custom Integration
+        run: |
+          wget https://github.com/zricethezav/gitleaks/releases/download/v7.6.1/gitleaks-linux-amd64
+          mv gitleaks-linux-amd64 gitleaks
+          chmod +x gitleaks
+          mv gitleaks /usr/local/bin/
+          gitleaks --version
+        
