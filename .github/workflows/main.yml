@@ -33,7 +33,7 @@ jobs:
         run: |
           python --version
           python3 --version
-          python3 -m pip install 
+          python3 -m install pip  
           python3 --upgrade pip
           pip install whispers
           whispers . >> whispers_result.json
