@@ -1,59 +1,40 @@
-# This is a basic workflow to help you get started with Actions
-
 name: CI
-
-# Controls when the workflow will run
 on:
-  # Triggers the workflow on push or pull request events but only for the main branch
   push:
     branches: [ main ]
   pull_request:
     branches: [ main ]
-
-  # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
 
-# A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
-  # This workflow contains a single job called "build"
   build:
-    # The type of runner that the job will run on
     runs-on: ubuntu-latest
-
-    # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
       
       - name: Set up Python
         uses: actions/setup-python@v2
         with:
           python-version: '3.x'
+      
       - name: Install dependencies
         run: |
           python --version
           python3 --version
           python -m pip install --upgrade pip 
           pip install whispers
+          #whispers . >> whispers_scan_report.json
+      
+      - name: Whispers Scan
+        run: |
           whispers . >> whispers_scan_report.json
       
       - uses: actions/upload-artifact@v2
         with:
           name: Artifact
           path: whispers_scan_report.json 
-        
-      #- name: Gitleaks Custom Integration
-      #  run: |
-      #    sudo apt-get update
-      #    sudo apt-get install wget -y 
-      #    wget --version
-      #    wget https://github.com/zricethezav/gitleaks/releases/download/v7.6.1/gitleaks-linux-amd64
-      #    mv gitleaks-linux-amd64 gitleaks
-      #    chmod +x gitleaks
-      #    mv gitleaks /usr/local/bin/
-      #    gitleaks --path=. -v --leaks-exit-code=0 >> gitleaks_scan_report.json
           
-      - name: Gitleaks Custom Integration Alternative
+      - name: Gitleaks Scan
         run: |
           sudo apt-get update
           sudo apt-get install wget tar -y 
@@ -69,4 +50,23 @@ jobs:
         with:
           name: Artifact
           path: gitleaks_scan_report.json 
-        
+          
+      - name: git-secrets Scan
+        run: |
+          git clone https://github.com/awslabs/git-secrets
+          cd git-secrets
+          make install
+          
+          cd ..
+          git secrets --install
+          git secrets --register-aws
+          
+          git secrets --scan &> get-secrets-scan-output.json
+          git secrets --scan-history &> get-secrets-scan-history-output.json
+          
+      - uses: actions/upload-artifact@v2
+        with:
+          name: Artifact
+          path: |
+            get-secrets-scan-output.json 
+            get-secrets-scan-history-output.json
