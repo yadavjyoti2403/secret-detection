@@ -47,7 +47,7 @@ jobs:
       - name: Gitleaks Custom Integration
         run: |
           sudo apt-get update
-          apt-get install wget
+          sudo apt-get install wget -y 
           wget --version
           wget https://github.com/zricethezav/gitleaks/releases/download/v7.6.1/gitleaks-linux-amd64
           mv gitleaks-linux-amd64 gitleaks
