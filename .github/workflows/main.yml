@@ -53,7 +53,7 @@ jobs:
           
       - name: git-secrets Scan
         run: |
-          sudo su
+         
           wget https://github.com/awslabs/git-secrets/archive/refs/heads/master.zip
           unzip master.zip 
           ls -la
