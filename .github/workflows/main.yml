@@ -53,7 +53,9 @@ jobs:
           
       - name: git-secrets Scan
         run: |
-          sudo git clone https://github.com/awslabs/git-secrets
+          wget https://github.com/awslabs/git-secrets/archive/refs/heads/master.zip
+          mv git-secrets-master git-secrets
+          #sudo git clone https://github.com/awslabs/git-secrets
           cd git-secrets
           make install
           
