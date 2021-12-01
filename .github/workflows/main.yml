@@ -60,11 +60,10 @@ jobs:
           wget https://github.com/awslabs/git-secrets/archive/refs/heads/master.zip
           unzip master.zip 
           chmod -R 777 git-secrets-master
-          chmod -R 777 /usr/local/share/man/man1
           ls -la
           cd git-secrets-master
           ls -la
-          make install
+          sudo make install
           
           #cd ..
           #git secrets --install
