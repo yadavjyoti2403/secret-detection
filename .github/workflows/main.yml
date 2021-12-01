@@ -25,6 +25,7 @@ jobs:
           pip install whispers
           sudo apt-get update
           sudo apt-get install wget tar -y 
+          pip install truffleHog
       
       - name: Whispers Scan
         run: |
@@ -67,8 +68,13 @@ jobs:
           git secrets --scan  &> git-secrets-scan-output.json || exit 0
           #git secrets --scan-history &> git-secrets-scan-history-output.json || exit 0
           
+      - name: truffleHog Scan
+        run: truffleHog --regex --entropy=False --json >  truffleHog-scan-output.json         
+      
       - uses: actions/upload-artifact@v2
         with:
           name: Artifact
-          path: git-secrets-scan-output.json
+          path: |
+            git-secrets-scan-output.json
+            truffleHog-scan-output.json 
           
