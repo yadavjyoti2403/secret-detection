@@ -65,7 +65,8 @@ jobs:
           #cd git-secrets
           sudo make install
           echo $pwd
-          echo "Setting up get secrets"
+          
+          cd ..
           cd ..
           cd secret-detection
           ls -la
