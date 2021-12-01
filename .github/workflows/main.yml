@@ -25,7 +25,7 @@ jobs:
           pip install whispers
           sudo apt-get update
           sudo apt-get install wget tar -y 
-          pip install truffleHog
+          pip install trufflehog 
       
       - name: Whispers Scan
         run: |
@@ -70,7 +70,7 @@ jobs:
           
       - name: truffleHog Scan
         run: |
-          truffleHog --regex --entropy=False --json . >  truffleHog-scan-output.json || exit 0     
+          trufflehog --regex --entropy=False --json . >  truffleHog-scan-output.json  
       
       - uses: actions/upload-artifact@v2
         with:
