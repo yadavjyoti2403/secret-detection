@@ -70,8 +70,7 @@ jobs:
           
       - name: truffleHog Scan
         run: |
-          pip install truffleHog
-          truffleHog --regex --entropy=False --json . >  truffleHog-scan-output.json         
+          truffleHog --regex --entropy=False --json . >  truffleHog-scan-output.json || exit 0     
       
       - uses: actions/upload-artifact@v2
         with:
