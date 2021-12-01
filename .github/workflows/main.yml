@@ -53,6 +53,7 @@ jobs:
           
       - name: git-secrets Scan
         run: |
+          echo $pwd
           cd ..
           mkdir git-secrets
           cd git-secrets
@@ -63,9 +64,10 @@ jobs:
           #git clone https://github.com/awslabs/git-secrets
           #cd git-secrets
           sudo make install
-          
-          
+          echo $pwd
+          echo "Setting up get secrets"
           cd ..
+          ls -la
           git secrets --install
           git secrets --register-aws
           
