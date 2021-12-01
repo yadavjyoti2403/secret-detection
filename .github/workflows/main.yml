@@ -23,22 +23,15 @@ jobs:
           python3 --version
           python -m pip install --upgrade pip 
           pip install whispers
-          #whispers . >> whispers_scan_report.json
+          sudo apt-get update
+          sudo apt-get install wget tar -y 
       
       - name: Whispers Scan
         run: |
           whispers . >> whispers_scan_report.json
-      
-      - uses: actions/upload-artifact@v2
-        with:
-          name: Artifact
-          path: whispers_scan_report.json 
           
       - name: Gitleaks Scan
         run: |
-          sudo apt-get update
-          sudo apt-get install wget tar -y 
-          wget --version
           wget https://github.com/zricethezav/gitleaks/releases/download/v8.0.6/gitleaks_8.0.6_linux_x64.tar.gz
           tar -xf gitleaks_8.0.6_linux_x64.tar.gz 
           chmod +x gitleaks
@@ -49,16 +42,14 @@ jobs:
       - uses: actions/upload-artifact@v2
         with:
           name: Artifact
-          path: gitleaks_scan_report.json 
+          path: |
+            whispers_scan_report.json 
+            gitleaks_scan_report.json 
           
       - name: git-secrets Scan
         run: |
           rm -rf LICENSE , README.md , gitleaks_8.0.6_linux_x64.tar.gz , gitleaks_scan_report.json , whispers_scan_report.json , .github , .gitleaks.toml
-          ls -la
-          echo $pwd
           cd ..
-          mkdir git-secrets
-          cd git-secrets
           wget https://github.com/awslabs/git-secrets/archive/refs/heads/master.zip
           unzip master.zip 
           chmod -R 777 git-secrets-master
@@ -66,22 +57,18 @@ jobs:
           #git clone https://github.com/awslabs/git-secrets
           #cd git-secrets
           sudo make install
-          echo $pwd
           
-          cd ..
           cd ..
           cd secret-detection
-          ls -la
           git secrets --install
           git secrets --register-aws
-          
-          #git secrets --scan 
+        
           git secrets --scan  &> get-secrets-scan-output.json || exit 0
-          #git secrets --scan-history &> get-secrets-scan-history-output.json
+          git secrets --scan-history &> get-secrets-scan-history-output.json || exit 0
           
       - uses: actions/upload-artifact@v2
         with:
           name: Artifact
           path: |
             get-secrets-scan-output.json 
-            #get-secrets-scan-history-output.json
+            get-secrets-scan-history-output.json
