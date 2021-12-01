@@ -69,7 +69,7 @@ jobs:
           #git secrets --scan-history &> git-secrets-scan-history-output.json || exit 0
           
       - name: truffleHog Scan
-        run: truffleHog --regex --entropy=False --json >  truffleHog-scan-output.json         
+        run: sudo truffleHog --regex --entropy=False --json >  truffleHog-scan-output.json         
       
       - uses: actions/upload-artifact@v2
         with:
