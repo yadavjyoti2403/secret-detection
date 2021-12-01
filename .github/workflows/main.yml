@@ -55,11 +55,10 @@ jobs:
         run: |
           wget https://github.com/awslabs/git-secrets/archive/refs/heads/master.zip
           unzip master.zip 
-          ls -la
           #sudo git clone https://github.com/awslabs/git-secrets
           cd git-secrets-master
           make install
-          
+          ls -la
           cd ..
           git secrets --install
           git secrets --register-aws
