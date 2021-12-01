@@ -62,6 +62,7 @@ jobs:
           chmod 777 git-secrets-master
           ls -la
           cd git-secrets-master
+          ls -la
           make install
           
           #cd ..
