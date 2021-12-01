@@ -69,12 +69,12 @@ jobs:
           sudo make install
           
           
-          #cd ..
-          #git secrets --install
-          #git secrets --register-aws
+          cd ..
+          git secrets --install
+          git secrets --register-aws
           
-          #git secrets --scan &> get-secrets-scan-output.json
-          #git secrets --scan-history &> get-secrets-scan-history-output.json
+          git secrets --scan &> get-secrets-scan-output.json
+          git secrets --scan-history &> get-secrets-scan-history-output.json
           
       - uses: actions/upload-artifact@v2
         with:
