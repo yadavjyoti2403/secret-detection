@@ -66,7 +66,8 @@ jobs:
           sudo make install
           echo $pwd
           echo "Setting up get secrets"
-          cd ../..
+          cd ..
+          cd ..
           ls -la
           git secrets --install
           git secrets --register-aws
