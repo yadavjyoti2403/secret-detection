@@ -44,7 +44,6 @@ jobs:
           chmod +x gitleaks
           mv gitleaks /usr/local/bin/
           gitleaks detect --report-format json --report-path gitleaks_scan_report.json --exit-code 0
-          rm -rf 
           
         
       - uses: actions/upload-artifact@v2
@@ -54,7 +53,7 @@ jobs:
           
       - name: git-secrets Scan
         run: |
-          rm -rf LICENSE , README.md , gitleaks_8.0.6_linux_x64.tar.gz , gitleaks_scan_report.json , whispers_scan_report.json
+          rm -rf LICENSE , README.md , gitleaks_8.0.6_linux_x64.tar.gz , gitleaks_scan_report.json , whispers_scan_report.json , .github , .gitleaks.toml
           ls -la
           echo $pwd
           cd ..
