@@ -59,7 +59,7 @@ jobs:
           cd git-secrets
           wget https://github.com/awslabs/git-secrets/archive/refs/heads/master.zip
           unzip master.zip 
-          chmod 777 git-secrets-master
+          chmod R 777 git-secrets-master
           ls -la
           cd git-secrets-master
           ls -la
