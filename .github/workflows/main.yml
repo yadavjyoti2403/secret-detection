@@ -53,16 +53,16 @@ jobs:
           
       - name: git-secrets Scan
         run: |
-         
+          cd ..
+          ls -la
+          mkdir git-secrets
+          cd git-secrets
           wget https://github.com/awslabs/git-secrets/archive/refs/heads/master.zip
           unzip master.zip 
           ls -la
-          chmod 777 git-secrets-master
-          #sudo git clone https://github.com/awslabs/git-secrets
           cd git-secrets-master
-          ls -la
-          #make install
-          ls -la
+          make install
+          
           #cd ..
           #git secrets --install
           #git secrets --register-aws
