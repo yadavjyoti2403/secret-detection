@@ -73,7 +73,7 @@ jobs:
           git secrets --install
           git secrets --register-aws
           
-          #git secrets --scan &> get-secrets-scan-output.json
+          git secrets --scan &> get-secrets-scan-output.json
           #git secrets --scan-history &> get-secrets-scan-history-output.json
           
       - uses: actions/upload-artifact@v2
@@ -81,4 +81,4 @@ jobs:
           name: Artifact
           path: |
             get-secrets-scan-output.json 
-            get-secrets-scan-history-output.json
+            #get-secrets-scan-history-output.json
