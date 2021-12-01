@@ -53,6 +53,7 @@ jobs:
           
       - name: git-secrets Scan
         run: |
+          ls -la
           echo $pwd
           cd ..
           mkdir git-secrets
