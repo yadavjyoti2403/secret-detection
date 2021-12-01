@@ -65,7 +65,9 @@ jobs:
           #ls -la
           git clone https://github.com/awslabs/git-secrets
           cd git-secrets
+          ls -la
           sudo make install
+          
           
           #cd ..
           #git secrets --install
