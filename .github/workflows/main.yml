@@ -47,6 +47,8 @@ jobs:
           chmod +x gitleaks
           mv gitleaks /usr/local/bin/
           gitleaks --version
+          echo pwd
+          ls
           gitleaks --path=. -v --leaks-exit-code=0 >> gitleaks_scan_report.json
           
       - uses: actions/upload-artifact@v2
